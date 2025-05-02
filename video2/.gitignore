@@ -1,0 +1,47 @@
+# Logs
+logs
+*.log
+npm-debug.log*
+pnpm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+
+# Dependencies
+node_modules/
+/package-lock.json
+/pnpm-lock.yaml
+/yarn.lock
+
+# Testing
+coverage/
+.nyc_output/
+
+# Build artifacts
+dist/
+build/
+public/
+
+# Environment variables
+.env
+.env.*
+!.env.example
+
+# Editor and IDE files
+.vscode/
+.idea
+*.suo
+*.ntvs*
+*.njsproj
+*.sln
+*.swp
+
+# OS files
+.DS_Store
+Thumbs.db
+
+# Temporary files
+tmp/
+
+# Optional: Ignore all files in a specific directory except one
+# my-folder/*
+#!my-folder/keep-this-file.txt
