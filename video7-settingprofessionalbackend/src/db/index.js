@@ -16,5 +16,3 @@ const connectDB = async () => {
     // 0 is a success code
   }
 };
-
-export default connectDB;
