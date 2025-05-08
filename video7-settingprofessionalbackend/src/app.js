@@ -15,7 +15,7 @@ app.use(
 //to limit maximum size of receiving json file is 16kb
 app.use(express.json({ limits: "16kb" }));
 
-//for url
+//for receiving url
 app.use(express.urlencoded({ extended: true, limit: "16kb" }));
 
 //to store/access static files
