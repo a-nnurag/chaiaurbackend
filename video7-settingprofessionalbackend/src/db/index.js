@@ -8,7 +8,9 @@ const connectDB = async () => {
     const connectionInstance = await mongoose.connect(
       `${process.env.MONGODB_URI}/${DB_NAME}`,
     );
-    console.log(`MongoDB connected: ${connectionInstance.connection.host}`);
+    console.log(
+      `MongoDB connected at DB host: ${connectionInstance.connection.host}`,
+    );
   } catch (err) {
     console.log("Error in connecting to database", err);
     //study exit codes
@@ -16,3 +18,5 @@ const connectDB = async () => {
     // 0 is a success code
   }
 };
+
+export default connectDB;

@@ -1,15 +1,16 @@
 import dotenv from "dotenv";
 import connectDB from "./db/index.js";
 import { app } from "./app.js";
-const port = process.env.PORT || 4000;
 
 dotenv.config({
   path: "./env",
 });
 
+const port = process.env.PORT || 8000; //if port is not defined in .env file, it will take 8000 as default port
+
 connectDB()
   .then(() => {
-    app.listen((port) => {
+    app.listen(port, () => {
       console.log(`Server is listening at port ${port}`);
     });
   })
@@ -17,8 +18,6 @@ connectDB()
     console.log("Error in connecting to db", err);
   });
 
-
-  
 //_________________________________________NOT SO PREFFERED APPROACH__________________________________________
 // (async () => {
 //   try {

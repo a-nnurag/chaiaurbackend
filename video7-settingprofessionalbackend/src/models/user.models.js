@@ -21,7 +21,7 @@ const userSchema = new mongoose.Schema(
       type: String,
       required: true,
       trim: true,
-      index: trim,
+      index: true,
     },
     avatar: {
       type: String, //cloudinary url
@@ -53,7 +53,7 @@ userSchema.pre("save", async function (next) {
   if (!this.isModified("password")) return next();
 
   //run this part only is field is modified
-  this.password = bcrypt.hash(this.password, 10); //10 rounds of encyryption
+  this.password =await bcrypt.hash(this.password, 10); //10 rounds of encyryption
   next();
 });
 
