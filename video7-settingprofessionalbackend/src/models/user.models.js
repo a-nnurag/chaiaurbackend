@@ -1,4 +1,6 @@
 import mongoose, { mongo } from "mongoose";
+import bcrypt from "bcrypt";
+import jwt from "jsonwebtoken";
 
 const userSchema = new mongoose.Schema(
   {
@@ -53,7 +55,7 @@ userSchema.pre("save", async function (next) {
   if (!this.isModified("password")) return next();
 
   //run this part only is field is modified
-  this.password =await bcrypt.hash(this.password, 10); //10 rounds of encyryption
+  this.password = await bcrypt.hash(this.password, 10); //10 rounds of encyryption
   next();
 });
 
@@ -76,20 +78,20 @@ userSchema.methods.generateAccessToken = async function () {
     },
     process.env.ACCESS_TOKEN_SECRET,
     {
-      expitresIn: process.env.ACCESS_TOKEN_EXPIRY,
+      expiresIn: process.env.ACCESS_TOKEN_EXPIRY,
     },
   );
 };
 
 userSchema.methods.generateRefreshToken = async function () {
   //although we are using async function but generally jwt.sign does not require it
-  return await jwt.sign(
+  return jwt.sign(
     {
       _id: this._id,
     },
     process.env.REFRESH_TOKEN_SECRET,
     {
-      expitresIn: process.env.REFRESH_TOKEN_EXPIRY,
+      expiresIn: process.env.REFRESH_TOKEN_EXPIRY,
     },
   );
 };
